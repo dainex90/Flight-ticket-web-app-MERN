@@ -1,0 +1,192 @@
+
+.navbar-general-container {
+  position: relative;
+  display: flex;
+  background-color: rgb(44, 50, 58);
+}
+
+.navbar-general-container ul {
+  list-style: none;
+}
+
+.navbar-links {
+  text-decoration: none;
+  color: rgb(225, 231, 231);
+  display: flex;
+  flex-direction: row;
+}
+
+#top-navbar {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+}
+
+#top-navbar ul{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+#top-navbar .navbar-links {
+   padding: 0px 15px;
+}
+
+#side-navbar {
+  background-color: rgb(235, 243, 247);
+  width:max-content;
+  height: 1000px;
+  color: rgb(60, 64, 67);
+  padding-top: 100px;
+  left: -33px;
+  position: relative;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);;
+}
+
+#login-link {
+  position: relative;
+  left: 300px;
+  border: 0;
+}
+
+#company-name-link {
+  color: yellowgreen;
+  font-size: xx-large;
+  font-weight: 500;
+  margin-right: 20px;
+  border: 0;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 175px;
+}
+
+.search-field-general {
+  padding-left: 8px;
+  width: 275px;
+  height: 30px;
+}
+
+.dropdown-content {
+  position: relative;
+  min-width: 150px;
+  z-index: 0;
+  height: 10px;
+  transition: height 0.30s;
+  padding:0px 20px 0px 20px;
+}
+
+.dropdown-content li {
+  display: none;
+  text-align:left;
+  margin-bottom: 7.5px;
+  padding-top: 7px;
+}
+
+.dropdown:hover .dropdown-content {
+  height: 175px;
+  background-color: aliceblue;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding-top: 5px;
+} 
+
+.dropdown:hover .dropdown-content li {
+  display: block;
+  cursor: pointer;
+}
+
+#top-dropdown{
+  position: absolute;
+  display: block;
+  left: 425px;
+  top: 25px;
+}
+
+#top-dropdown .dropdown-content {
+  display: flex;
+  flex-direction: column;
+}
+
+#top-dropdown:hover .dropdown-content{
+  height: 220px;
+}
+
+#footer-container {
+  background-color: rgb(31, 35, 41);
+  color: rgb(200, 209, 209);  
+  font-size: medium;
+}
+
+#footer-bottom-container {
+  display: flex;
+  padding: 50px;
+  justify-content: right;
+}
+
+#footer-bottom-container div {
+  display: flex;
+  background-color: rgb(42, 45, 52);
+  border-radius: 5px;
+  border-bottom-right-radius: 75px;
+  padding: 25px;
+  width: 50%;
+  justify-content: end;
+}
+
+#footer-links-container {
+  list-style: none;
+}
+
+#footer-links-container li a{
+  color: aliceblue;
+  text-decoration: none;
+}
+
+#all-forms-container {
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  background-color: rgb(241, 245, 248);
+  width: 100%;
+  padding-left: 20px;
+}
+
+#form-container {
+  padding: 10px;
+}
+
+#form label {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  text-align: left;
+}
+
+#post-response {
+  position: absolute;
+}
+
+.submit-btn {
+  padding: 4px 12px 4px 12px;
+  border: 1.5px solid rgb(41, 43, 46);
+  background-color: greenyellow;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.booking-list-btn {
+  width: 200px;
+}
+
+.list-item {
+  margin: 10px;
+  color:rgb(94, 97, 97);
+  transition: color 0.2s;
+}
+
+.list-item:hover {
+  color: rgb(50, 51, 51);
+  cursor: pointer;
+}
