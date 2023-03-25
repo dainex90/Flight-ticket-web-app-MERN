@@ -9,7 +9,7 @@ function DropdownMenu(props) {
     {
         return ( 
             <li className="dropdown"> 
-                <span style={{display: 'flex'}}> {props.title} 
+                <span style={{display: 'flex', justifyContent: 'center'}}> {props.title} 
                 <img src={DropDownArrow} width="25px" height='25px'></img>
                 </span>
                     <ul className="dropdown-content">

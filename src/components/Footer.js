@@ -3,7 +3,7 @@ function Footer() {
         <footer id="footer-container">
 
             <div style={{backgroundColor: 'rgb(35, 40, 47)', padding: '50px', textAlign: 'center'}}>
-                Copyright @ BuzzAir . All responsibilities ordered @ owner.
+                Copyright @  _ is a trademark of Buzzair. All other trademarks and trade names are the property of their respective owners .
             </div>
 
             <div id="footer-bottom-container">

@@ -25,12 +25,12 @@ function MainNavbar() {
                                         placeholder="What are you looking for today?"
                                         / >
                                 <button>
-                                    <img src={SearchIcon} width="25px" height="25px"></img>
+                                    <img src={SearchIcon} width="20px" height="20px"></img>
                                 </button>
                             </div>
 
                             < DropdownMenu title="More" type="top-navbar"/>
-                            
+
                             <li>
                                 <Link to="/login" id="login-link" className="navbar-links"> Login</Link>
                             </li>
