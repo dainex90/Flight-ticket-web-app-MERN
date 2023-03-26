@@ -2,7 +2,7 @@ function Button() {
     
     return ( 
         <div>
-            <input type='submit' className='submit-btn' value='Ok'/>
+            <input type='submit' className='general-button' value='Ok'/>
         </div>
      );
 }

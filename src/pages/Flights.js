@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import SideNavbar from "../components/SideNavbar";
 
 function Flights() {
 
@@ -22,14 +23,18 @@ function Flights() {
 
 
     return ( 
-        <div className='page-content'>  
-            <h1 className="main-header">Incoming Flights</h1>
-                <div id="all-flights-container">
-                    <ul id="response-data">
-                    </ul>
-                    <div id="error-response-data"> 
+        <div className='page-content'>
+            < SideNavbar />
+            <div className="inner-page-content">
+                <label className="main-header">Incoming Flights
+                    <div id="all-flights-container">
+                        <ul id="response-data">
+                        </ul>
+                        <div id="error-response-data"> 
+                        </div>
                     </div>
-                </div>
+                </label>
+            </div>
         </div>
      );
 }

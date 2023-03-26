@@ -1,31 +1,17 @@
+import FooterLinks from '../components/FooterLinks';
+
 function Footer() {
+
+    const buzzAirLinks = ["About", "Working With us", "Terms of Conduct", "Policies", "FacebookLOL"];
+    const channelLinks = ["Stack Overflow", "Github", "Axios Http", "Instagram"];
     return (  
         <footer id="footer-container">
-
             <div style={{backgroundColor: 'rgb(35, 40, 47)', padding: '50px', textAlign: 'center'}}>
                 Copyright @  _ is a trademark of Buzzair. All other trademarks and trade names are the property of their respective owners .
             </div>
-
             <div id="footer-bottom-container">
-                <div> <strong><span style={{fontSize: 'large'}}>Channels</span></strong>
-                    <ul id="footer-links-container">
-                        <li>
-                            <a href="">StackOverflow</a>
-                        </li>
-                        <li>
-                            <a href="">GitHub</a>
-                        </li>
-                        <li>
-                            <a href="">Instagram</a>
-                        </li>
-                        <li>
-                            <a href="">Tumblr</a>
-                        </li>
-                        <li>
-                            <a href="">Facebook</a>
-                        </li>
-                    </ul>
-                </div>
+                <FooterLinks title="BuzzAir" links={buzzAirLinks}/>
+                <FooterLinks title="Channels" links={channelLinks}/>
             </div>
         </footer>
     );

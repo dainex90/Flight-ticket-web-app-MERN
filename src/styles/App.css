@@ -2,18 +2,18 @@
 .navbar-general-container {
   position: relative;
   display: flex;
+  justify-content: left;
+  align-items: start;
   background-color: rgb(44, 50, 58);
+  font-size: small;
 }
 
 ul {
   list-style: none;
 }
 
-.navbar-links {
-  text-decoration: none;
+.navbar-links { 
   color: rgb(225, 231, 231);
-  display: flex;
-  flex-direction: row;
 }
 
 #top-navbar {
@@ -25,42 +25,47 @@ ul {
 #top-navbar ul{
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: end;
 }
 
 #top-navbar .navbar-links {
-   padding: 0px 15px;
+   padding: 0px 10px;
 }
 
 #side-navbar {
-  background-color: rgb(241, 244, 248);
-  width:max-content;
-  height: 1000px;
-  color: rgb(60, 64, 67);
-  padding-top: 100px;
-  left: -33px;
   position: relative;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);;
+  background-color: rgb(241, 244, 248);
+  width:min-content;
+  color: rgb(62, 67, 60);
+  padding-top: 75px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #login-link {
   position: relative;
-  left: 300px;
-  border: 0;
+  left: 1200px;
+  font-weight: 500;
+  background-color: rgb(59, 70, 79);
+  padding: 2.0px;
+  border-radius: 5px;
 }
 
 #company-name-link {
-  color: yellowgreen;
-  font-size: xx-large;
-  font-weight: 500;
+  color: rgb(57, 222, 42);
+  font-size: x-large;
+  font-weight: 400;
   margin-right: 20px;
-  border: 0;
+  margin-left: -25px;
 }
 .search-container {
   display: flex;
   align-items: center;
   position: relative;
   left: 175px;
+}
+
+.search-container *::placeholder {
+  color: rgb(106, 107, 108);
 }
 
 .search-container button {
@@ -75,12 +80,11 @@ ul {
 
 .dropdown-content {
   position: relative;
-  width: 84%;
+  width: 81%;
   z-index: 0;
   height: 8px;
   left: -11px;
   transition: height 0.2s;
-  padding:0px 20px 0px 20px;
   border-bottom: 0px solid rgb(73, 80, 81);
 }
 
@@ -96,7 +100,7 @@ ul {
   background-color: rgb(126, 133, 138);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding-top: 5px;
-  border-bottom: 5px solid rgb(53, 60, 68);
+  border-bottom: 2px solid rgb(53, 60, 68);
 } 
 
 .dropdown:hover .dropdown-content li {
@@ -105,13 +109,11 @@ ul {
 }
 
 #top-dropdown{
-  position: absolute;
-  display: block;
-  left: 425px;
-  top: 25px;
+  position: relative;
 }
 
 #top-dropdown .dropdown-content {
+  position: absolute;
   display: flex;
   flex-direction: column;
   margin-top: 15px;
@@ -125,42 +127,44 @@ ul {
 }
 
 #footer-container {
-  background-color: rgb(31, 35, 41);
-  color: rgb(200, 209, 209);  
-  font-size: medium;
+  background-color: rgb(41, 46, 53);
+  color: rgb(189, 199, 199);  
+  font-size: small;
+  position: relative;
 }
 
 #footer-bottom-container {
   display: flex;
-  padding: 50px;
   justify-content: right;
 }
 
-#footer-bottom-container div {
-  display: flex;
-  background-color: rgb(35, 40, 47);
-  border-radius: 5px;
-  border-bottom-right-radius: 75px;
-  padding: 25px;
-  width: 50%;
-  justify-content: end;
-}
-
 #footer-links-container {
-  list-style: none;
+  background-color: rgb(48, 55, 61);
+  padding: 25px;
 }
 
-#footer-links-container li a{
-  color: aliceblue;
+#footer-links-title {
+  margin-bottom: 15px;
+  font-size: medium;
+  color: rgb(158, 166, 177);
+}
+.footer-links {
+  margin-bottom: 7.5px;
+}
+
+a {
   text-decoration: none;
+  color: rgb(182, 185, 189);
+}
+
+a:hover {
+  color: aliceblue;
 }
 
 #all-forms-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  background-color: rgb(245, 248, 251);
-  padding: 25px 0px 50px 0px;
+  font-size: small;
 }
 
 #form label {
@@ -175,15 +179,16 @@ ul {
 }
 
 .submit-btn {
-  padding: 4px 12px 4px 12px;
-  border: 1.5px solid rgb(41, 43, 46);
-  background-color: greenyellow;
+  padding: 2px 12px 2px 12px;
+  border: 1.5px solid rgb(62, 64, 69);
+  background-color: rgb(57, 222, 42);
+  color: rgb(242, 245, 239);
   border-radius: 5px;
   margin-top: 10px;
 }
 
 .booking-list-btn {
-  width: 250px;
+  width: 200px;
 }
 
 .list-item {
@@ -196,12 +201,13 @@ ul {
   color: rgb(184, 186, 194);
   cursor: pointer;
 }
-#all-flights-container {
-  background-color: rgb(245, 248, 251);
-}
 
 #all-flights-container p{
   color: rgb(232, 162, 51);
+}
+
+#response-data {
+  font-size: small;
 }
 
 #response-data li{
@@ -222,6 +228,7 @@ p {
   color: rgb(47, 70, 70);
   padding-top: 10px;
   padding-bottom: 30px;
+  font-size: x-large;
 }
 
 #airport-departure-list {
@@ -247,4 +254,65 @@ p {
   color: red;
   padding: 50px;
   text-align: left;
+}
+
+#login-form {
+  border: 1px solid rgba(129, 142, 145, 0.148);
+  background-color: rgb(239, 241, 243);
+  border-radius: 10px;
+}
+
+#login-form * {
+  display: flex;
+  flex-direction: column;
+  border-radius: 2.5px;
+  border: 0;
+  padding: 5px;
+  align-items: center;
+  margin: 10px;
+}
+
+.general-button {
+  color: rgb(242, 245, 239);
+  background-color: rgb(57, 222, 42);
+  font-weight: 600;
+}
+
+.text-input-area {
+  background-color: rgb(190, 199, 211);
+  color: rgb(60, 63, 65);
+}
+::placeholder{
+  color: rgb(51, 54, 56);
+}
+.page-content {
+  position: relative;
+  display: flex;
+} 
+
+.inner-page-content {
+  display: flex;
+  align-items:normal;
+  padding-top: 150px;
+  padding-left: 20%;
+  padding-bottom: 100px;
+}
+
+#home-page-inner {
+  padding: 100px;
+  background-color: rgb(56, 67, 78);
+}
+
+#tag {
+  color: rgb(222, 222, 222);
+  font-size: larger;
+}
+
+label {
+  color: rgb(56, 70, 78);
+}
+
+#form *{
+  display: flex;
+  justify-content: center;
 }

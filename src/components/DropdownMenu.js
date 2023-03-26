@@ -2,9 +2,6 @@ import DropDownArrow from '../imgs/drop-down-arrow.png';
 
 function DropdownMenu(props) {
 
-    const topNavbarStyle = {
-        position: 'absolute'
-    }
     if (props.type === "side-navbar")
     {
         return ( 
@@ -22,9 +19,9 @@ function DropdownMenu(props) {
          );
     }
     return ( 
-        <li className="dropdown navbar-links " id='top-dropdown'> 
+        <li className="dropdown navbar-links" id='top-dropdown'> 
             {props.title} 
-            <img src={DropDownArrow} width="25px" height='25px'></img>
+            <img style={{position: 'relative', top: '8px'}} src={DropDownArrow} width="25px" height='25px'></img>
                 <ul className="dropdown-content">
                     <li className="list-item">All Flights</li>
                     <li className="list-item">Booking</li>

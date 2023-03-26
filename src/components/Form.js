@@ -90,23 +90,23 @@ function Form (props) {
     return (  
         <>
             <div id="form-container">
-            <form id="form" onSubmit={(e) => handleSubmit(e)}>
-                <label> {operationType()}
-                        <label style={{color: 'orange'}}> <strong>From</strong>
-                            <button name="departure" onClick={(e) => getData(e)} className="booking-list-btn">{departureAirport} 
-                                <ul id="airport-departure-list"></ul>
-                            </button>
-                        </label>
-                        <label style={{color: 'orange'}}> <strong>To</strong>
-                            <button name="destination" onClick={(e) => getData(e)} className="booking-list-btn">{destinationAirport}
-                                <ul id="airport-destination-list"></ul>
-                            </button>
-                        </label>
-                        <Button />
-                </label>
-                <div id="post-response"></div>
-            </form>
-        </div>
+                <form id="form" onSubmit={(e) => handleSubmit(e)}>
+                    <label> <strong>{operationType()}</strong>
+                            <label style={{color: 'orange'}}> <strong>From</strong>
+                                <button name="departure" onClick={(e) => getData(e)} className="booking-list-btn">{departureAirport} 
+                                    <ul id="airport-departure-list"></ul>
+                                </button>
+                            </label>
+                            <label style={{color: 'orange'}}> <strong>To</strong>
+                                <button name="destination" onClick={(e) => getData(e)} className="booking-list-btn">{destinationAirport}
+                                    <ul id="airport-destination-list"></ul>
+                                </button>
+                            </label>
+                            <Button />
+                    </label>
+                    <div id="post-response"></div>
+                </form>
+            </div>
         </>
         
     );

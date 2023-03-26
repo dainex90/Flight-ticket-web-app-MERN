@@ -1,8 +1,18 @@
+import CompanyLogo from "../components/CompanyLogo";
+import Flights from '../pages/Flights'
+import SideNavbar from "../components/SideNavbar";
 function Home() {
     return (  
-        <>
-        <div>Home Page! <br></br> Welcome User!</div>
-        </>
+        <div className="page-content">
+            <SideNavbar />
+            <div className="inner-page-content">
+                <div id="home-page-inner">
+                    <CompanyLogo />
+                    <div id="tag">Reaching new Heights .</div>
+                </div>
+            </div>
+            
+        </div>
     );
 }
 
