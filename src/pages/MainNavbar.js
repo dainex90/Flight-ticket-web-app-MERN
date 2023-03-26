@@ -1,12 +1,15 @@
 
 import { Outlet, Link } from "react-router-dom";
 import DropdownMenu from "../components/DropdownMenu";
-import SearchIcon from '../imgs/search.png';
 import Footer from "../components/Footer";
 import CompanyLogo from "../components/CompanyLogo";
-import Booking from "./Booking";
-import SideNavbar from '../components/SideNavbar';
+import SearchArea from "../components/SearchArea";
 function MainNavbar() {
+
+
+    // Internal links
+    const partnersItems = ["storlek", "himla rolig", "stoshhlaff", "ClassicVibes"];
+    const moreItems = ["easy", "Noggrann", "Hardware", "N64", "Sega Saturn"];
 
     return ( 
         <>
@@ -20,17 +23,9 @@ function MainNavbar() {
                             <li>
                                 <Link to="/booking" className="navbar-links"> Tickets </Link>
                             </li>
-                            <DropdownMenu title="Partners" type="top-navbar" />
-                            <DropdownMenu title="More" type="top-navbar"/>
-                            <div className="search-container">
-                                <input type="search" 
-                                        className="search-field-general"
-                                        placeholder="What are you looking for today?"
-                                        / >
-                                <button>
-                                    <img src={SearchIcon} width="20px" height="20px"></img>
-                                </button>
-                            </div>
+                            <DropdownMenu title="Partners" content={partnersItems} type="top-navbar" />
+                            <DropdownMenu title="More" content={moreItems} type="top-navbar"/>
+                            <SearchArea />
                             <div id="login-link" >
                                 <li>
                                     <Link to="/login" className="navbar-links"> Login</Link>
@@ -41,7 +36,6 @@ function MainNavbar() {
                 </div>     
                 <Outlet />
                 <Footer />
-          
         </>
      )
 };

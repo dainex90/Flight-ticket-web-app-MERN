@@ -7,8 +7,11 @@ function Home() {
             <SideNavbar />
             <div className="inner-page-content">
                 <div id="home-page-inner">
-                    <CompanyLogo />
-                    <div id="tag">Reaching new Heights .</div>
+                    <div>
+                        <CompanyLogo />
+                        <div id="tag">Reaching new Heights .</div>
+                    </div>
+  
                 </div>
             </div>
             
