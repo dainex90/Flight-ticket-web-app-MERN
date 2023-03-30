@@ -4,6 +4,7 @@ import DropdownMenu from "../components/DropdownMenu";
 import Footer from "../components/Footer";
 import CompanyLogo from "../components/CompanyLogo";
 import SearchArea from "../components/SearchArea";
+
 function MainNavbar() {
 
 
@@ -17,14 +18,17 @@ function MainNavbar() {
                     <nav >
                         <ul>
                             < CompanyLogo />
-                            <li>
-                                <Link to="/flights" className="navbar-links"> All Flights</Link>
-                            </li>
-                            <li>
-                                <Link to="/booking" className="navbar-links"> Tickets </Link>
-                            </li>
-                            <DropdownMenu title="Partners" content={partnersItems} type="top-navbar" />
-                            <DropdownMenu title="More" content={moreItems} type="top-navbar"/>
+                            <div id="topnav-links-container">
+                                <li>
+                                    <Link to="/flights" className="navbar-links"> All Flights</Link>
+                                </li>
+                                <li>
+                                    <Link to="/booking" className="navbar-links"> Tickets </Link>
+                                </li>
+                                <DropdownMenu title="Partners" content={partnersItems} type="top-navbar" />
+                                <DropdownMenu title="More" content={moreItems} type="top-navbar"/>
+                            </div>
+             
                             <SearchArea />
                             <div id="login-link" >
                                 <li>
@@ -33,7 +37,7 @@ function MainNavbar() {
                             </div>
                         </ul>
                     </nav>
-                </div>     
+                </div>  
                 <Outlet />
                 <Footer />
         </>

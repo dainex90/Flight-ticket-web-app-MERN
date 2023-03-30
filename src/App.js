@@ -7,6 +7,7 @@ import Booking from './pages/Booking';
 import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Signup from './pages/Signup';
+import LoggedIn from './pages/LoggedIn';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='login' element={<Login />} /> 
           <Route path='signup' element={<Signup />} />
           <Route path='*' element={<PageNotFound />} /> 
+          <Route path="loggedin" element={<LoggedIn />} />
         </Route>
       </Routes>
     </BrowserRouter>

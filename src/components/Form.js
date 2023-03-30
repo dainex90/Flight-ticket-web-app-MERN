@@ -2,11 +2,12 @@ import axios from "axios";
 import Button from "./Button";
 import { useState } from "react";
 
+
 function Form (props) {
 
     // states
-    const [departureAirport, setDepartureAirport] = useState("...");
-    const [destinationAirport, setDestinationAirport] = useState('...');
+    const [departureAirport, setDepartureAirport] = useState("departure");
+    const [destinationAirport, setDestinationAirport] = useState('destination');
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -15,42 +16,28 @@ function Form (props) {
     const getData = (e) => {
         axios.get('http://localhost:8000/flights')
         .then(res => {
-            const airport = "";
-
-            for (let index = 0; index < res.data.length; index++) {
-                if (e.target.name === "departure") 
-                {
-                    airport = res.data[index].departure_airport;
-
-                    let li = document.createElement('li');
-                    li.innerHTML = `${airport}`;
-                    document.getElementById('airport-departure-list').appendChild(li);
-                    li.addEventListener('click', () => 
-                    {
-                        setDepartureAirport(airport);
-                        document.getElementById('airport-departure-list').style.display = 'none';
-                    }
-                    )
-                }
-                else 
-                {
-                    airport = res.data[index].destination_airport;
-
-                    let li = document.createElement('li');
-                    li.innerHTML = `${airport}`;
-                    document.getElementById('airport-destination-list').appendChild(li);
-                    li.addEventListener('click', () => 
-                    {
-                        setDestinationAirport(airport);
-                        document.getElementById('airport-destination-list').style.display = 'none';
-                    }
-                    )   
-                }
-            }
-        })
+            generateList(res.data, e);
+        }
+        )
         .catch(err => {
-            document.getElementById('response-data').innerHTML = `Obs, something went wrong! <br><br><strong>${err}</strong>`
+            document.getElementsByClassName('error-response-data')[0].innerHTML = err;
         });
+    }
+    /**
+     * @param resData response data fetched
+     * @param e the current event e
+     */
+    function generateList (resData, e) {
+        /* if (e.target.value === "departure") { */
+            for (let index = 0; index < resData.length; index++) 
+            {   
+                console.log("in here");
+                // Generate 'From' list 
+                let li = document.createElement('li');
+                li.innerHTML = `${resData[index].departure_airport}`;
+                document.getElementById("airport_departure_list").appendChild(li);
+            }
+        //}
     }
     
     // Post Form w Axios http
@@ -93,18 +80,23 @@ function Form (props) {
                 <form id="form" onSubmit={(e) => handleSubmit(e)}>
                     <label> <strong>{operationType()}</strong>
                             <label style={{color: 'orange'}}> <strong>From</strong>
-                                <button name="departure" onClick={(e) => getData(e)} className="booking-list-btn">{departureAirport} 
-                                    <ul id="airport-departure-list"></ul>
+                                <button value={departureAirport} onClick={(e) => getData(e)} className="booking-list-btn">{departureAirport}
+                                    <ul id="airport-departure-list" className="airport-list-general">
+
+                                    </ul>
                                 </button>
                             </label>
                             <label style={{color: 'orange'}}> <strong>To</strong>
-                                <button name="destination" onClick={(e) => getData(e)} className="booking-list-btn">{destinationAirport}
-                                    <ul id="airport-destination-list"></ul>
+                                <button value={destinationAirport} onClick={(e) => getData(e)} className="booking-list-btn">{destinationAirport}
+                                    <ul id="airport-destination-list" className="airport-list-general">
+                                    
+                                    </ul>
                                 </button>
                             </label>
                             <Button />
                     </label>
                     <div id="post-response"></div>
+                    <div className="error-response-data"></div>
                 </form>
             </div>
         </>

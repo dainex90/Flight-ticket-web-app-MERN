@@ -3,8 +3,8 @@ import DropdownMenu from "./DropdownMenu";
 function SideNavbar() {
 
     const mainContentItems = ["item1", "item2", "item3", "Item 4"];
-    const additionalInformationItems = ["Ostbåge", "chipspåse", "Ostmacka", "Morbid"];
-    const programmesItems = ["rix","lax","Struxlux", "Morot", "Knäckebröd"];
+    const additionalInformationItems = ["Store", "Contact-Center", "Regional", "Our Vision"];
+    const programmesItems = ["Internship","Study-Plans","Service"];
 
     return ( 
         <div className="navbar-general-container" id="side-navbar">

@@ -11,7 +11,7 @@ const SearchArea = () => {
         .then(res => {
             routeData = res.data;
         })
-        .catch(err => console.log(err));
+        .catch(err => document.getElementById('error-reasponse-data').innerHTML = `${err}`);
     }, []);
 
     const [search, setSearch] = useState("");
@@ -26,12 +26,26 @@ const SearchArea = () => {
 
     const handleChange = (e) => {
         setSearch(e.target.value);
-        routeData.filter(item => {
-                if (item.departure_airport.toUpperCase().includes(search.toUpperCase())){
-                    console.log(item.departure_airport);
-                    document.getElementById('search-response-list').innerHTML = `${item.departure_airport}`;
-                }
-            })
+
+        for (let index = 0; index < routeData.length; index++) 
+        {
+            const route = routeData[index];
+            if (route.departure_airport.toLowerCase().includes(search.toLowerCase()))
+            {
+                console.log(route.departure_airport);
+
+                let li = document.createElement('li');
+                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} 
+                <p><strong>To:</strong></p> ${route.destination_airport} 
+                <p><strong>Country:</strong></p> ${route.countries} 
+                <p id="take-off-text" >Take off: </p> ${route.time}`;
+            
+                document.getElementById('search-response-list').appendChild(li);
+            }
+            else {
+                return;
+            }
+        }
     }
 
     return ( 
@@ -50,10 +64,10 @@ const SearchArea = () => {
                     <ul id='search-response-list'> 
                     </ul>
                 </div>
+                <button id='search-button'>
+                    <img src={SearchIcon} width="20px" height="20px"></img>
+                </button>
             </div>
-            <button>
-                <img src={SearchIcon} width="20px" height="20px"></img>
-            </button>
         </div>
     );
 }

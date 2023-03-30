@@ -1,3 +1,4 @@
+import { ErrorResponse } from "@remix-run/router";
 import axios from "axios";
 import { useEffect } from "react";
 import SideNavbar from "../components/SideNavbar";
@@ -11,13 +12,13 @@ function Flights() {
             for (let index = 0; index < res.data.length; index++) {
                 const route = res.data[index];
                 let li = document.createElement('li');
-                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} <p><strong>To:</strong></p> ${route.destination_airport} <p><strong>Country:</strong></p> ${route.countries} <p><span style={{color: 'red'}}>Taking off:</span></p> ${route.time}`;
+                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} <p><strong>To:</strong></p> ${route.destination_airport} <p><strong>Country:</strong></p> ${route.countries} <p id="take-off-text" >Take off: </p> ${route.time}`;
 
-                document.getElementById('response-data').appendChild(li);
+                document.getElementById('allflights-response-data').appendChild(li);
             }
         })
         .catch(err => {
-            document.getElementById('error-response-data').innerHTML = `Obs, something went wrong! <br><br><strong>${err}`
+            document.getElementsByClassName('error-response-data')[0].innerHTML = `Obs, something went wrong! <br><br><strong>${err}`
         });
     }, []);
 
@@ -28,10 +29,9 @@ function Flights() {
             <div className="inner-page-content">
                 <label className="main-header">Incoming Flights
                     <div id="all-flights-container">
-                        <ul id="response-data">
+                        <ul id="allflights-response-data">
                         </ul>
-                        <div id="error-response-data"> 
-                        </div>
+                        <div className="error-response-data"></div>
                     </div>
                 </label>
             </div>

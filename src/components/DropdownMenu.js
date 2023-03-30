@@ -18,13 +18,13 @@ function DropdownMenu(props) {
     {
         return ( 
             <li className="dropdown"> 
-                <span style={{display: 'flex', justifyContent: 'center'}}> {props.title} 
-                <img src={DropDownArrow} width="25px" height='25px'></img>
+                <span>{props.title} 
+                <img style={{position: 'relative', top: '8px'}} src={DropDownArrow} width="25px" height='25px'></img>
                 </span>
-                    <ul id="dropdown-content">  
+                    <ul className="dropdown-content">  
                     {props.content.map(link => {
                         key ++;
-                        return <li key={key}> {link} </li>
+                        return <li key={key}>{link} </li>
                     })} 
                     </ul>
             </li>
@@ -34,7 +34,7 @@ function DropdownMenu(props) {
         <li className="dropdown navbar-links" id='top-dropdown'> 
             {props.title} 
             <img style={{position: 'relative', top: '8px'}} src={DropDownArrow} width="25px" height='25px'></img>
-                <ul id="dropdown-content">  
+                <ul className="dropdown-content">  
                 {props.content.map(link => {
                         key ++;
                         return <li key={key}> {link} </li>
