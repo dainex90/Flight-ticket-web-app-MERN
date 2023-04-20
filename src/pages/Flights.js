@@ -1,8 +1,8 @@
-import { ErrorResponse } from "@remix-run/router";
+
 import axios from "axios";
 import { useEffect } from "react";
 import SideNavbar from "../components/SideNavbar";
-
+import incoming_flights from '../imgs/incoming_flights.jpg';
 function Flights() {
 
     // Getting all the flight routes
@@ -12,7 +12,7 @@ function Flights() {
             for (let index = 0; index < res.data.length; index++) {
                 const route = res.data[index];
                 let li = document.createElement('li');
-                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} <p><strong>To:</strong></p> ${route.destination_airport} <p><strong>Country:</strong></p> ${route.countries} <p id="take-off-text" >Take off: </p> ${route.time}`;
+                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} <p><strong>To:</strong></p> ${route.destination_airport} <p><strong>Country:</strong></p> ${route.countries} <div id="take-off-text"> Take off - </div> ${route.time}`;
 
                 document.getElementById('allflights-response-data').appendChild(li);
             }
@@ -22,18 +22,21 @@ function Flights() {
         });
     }, []);
 
-
     return ( 
         <div className='page-content'>
             < SideNavbar />
             <div className="inner-page-content">
-                <label className="main-header">Incoming Flights
+                <div>
+                    <label className="main-header" id="flights-header">Incoming Flights </label>
+                    <img src={incoming_flights} />
+                </div>
+                
                     <div id="all-flights-container">
                         <ul id="allflights-response-data">
                         </ul>
                         <div className="error-response-data"></div>
                     </div>
-                </label>
+                
             </div>
         </div>
      );

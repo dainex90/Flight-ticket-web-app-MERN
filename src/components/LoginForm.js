@@ -2,45 +2,65 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import SideNavbar from "./SideNavbar";
 import axios from "axios";
+import welcometext_login_screen from '../imgs/Shutterstock_1249931161.png';
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../redux/user/userSlice";
 
 
 function LoginForm() {
 
-    // states
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    // Redux setup
+    const dispatch = useDispatch();
 
+    // states
+    const [emailLocal, setEmailLocal] = useState("");
+    const [password, setPassword] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    const navigate = useNavigate();
     // event handlers
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const form = document.getElementById('login-form');
-        const formData = new FormData(form);
-        //console.log([...formData]);
-
-        axios.post('http://localhost:8000/login/email-password', formData)
-            .then(res => {
-                console.log(res);
-                document.getElementById('login-response-text').innerHTML = `<p>${res.data}</p>`;
-                
+        axios.get(`http://localhost:8000/login/${emailLocal}-${password}`, {
+            params: {
+                email: emailLocal,
+                password: password
+            }
+        })
+            .then(function (response) {
+                // Success
+              // Add user details to the global state with redux-toolkit
+              dispatch(addUser(response.data));
+              // and navigate to the user dashboard
+              navigate("/dashboard");
             })
-            .catch(error => {
-                document.getElementsByClassName('error-response-data')[0].innerHTML = `${error.message} <br><br>${error.response.data}`;
+            .catch(function (error) {
+              //handle error, does the user not exist?
+              console.log(error);
+              document.getElementById("login-response-text").innerHTML = `${error.message}`;
             });
-    }      
+    }   
+    
     return ( 
         <div className="page-content">
             < SideNavbar />
-
-            <div className="inner-page-content">
-                <form id="login-form" onSubmit={handleSubmit}>
+            <div id="login-inner-page">
+                
+                {/* <div className="line-container three">
+                </div> */}
+                <div id="login-container">
+                    <img src={welcometext_login_screen} width='670px' height='280px'></img>
+                    <form id="login-form" onSubmit={handleSubmit}>
+                    
                     <label style={{color: 'rgb(50, 50, 50)'}}> <strong>Login</strong> 
 
                         <input  type="text"
                                 className="text-input-area" 
-                                value={email}
+                                value={emailLocal}
                                 placeholder="Email"
-                                onChange={e => setEmail(e.target.value)}
+                                onChange={e => setEmailLocal(e.target.value)}
 
                         />
                         <input  type="text"
@@ -49,16 +69,26 @@ function LoginForm() {
                                 placeholder="Enter your Password"
                                 onChange={e => setPassword(e.target.value)}
                         />
-                        <input type="submit" value="Log in" className="general-button" id="login-btn"/>
+                        <input type="submit" value="Log in" className="general-button"/>
                     </label>
-                    <div id="login-response-text"></div>
-                    <div className="error-response-data"></div>
-                    <p style={{fontSize: 'small'}}> Not a member? 
-                    <Link to="/signup" style={{color: 'blue'}}> Sign up!</Link> </p>
+                    <div id="login-response-text" className="error-response-data"></div>
+
+                    <div id="login-options">
+                        <p>Remember me
+                            <input type="checkbox" 
+                                    />
+                        </p>
+                        <p><Link to="/resetpassword" className="footer-links">Forgot Password</Link></p>
+                        <div>
+                            <p style={{color: "darkgray"}}> Not a member? 
+                                <Link to="/signup" style={{color: 'blue'}} className="footer-links"> Sign up!</Link>
+                            </p>
+                        </div>
+                    </div>
                 </form>
+                </div>
             </div>
         </div>
-        
      );
 }
 

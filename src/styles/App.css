@@ -12,7 +12,15 @@ ul {
   list-style: none;
 }
 
-#topnav-links-container {
+li {
+  list-style: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+#topnav-links-container-left {
   display: flex;
   align-items: end;
 }
@@ -40,9 +48,11 @@ ul {
   text-align: left;
   left: -33px;
   background-color: rgb(241, 244, 248);
-  color: rgb(59, 62, 58);
+  color: rgb(65, 81, 93);
   padding-top: 75px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-weight: 500;
 }
 
 #top-dropdown .dropdown-content{
@@ -53,12 +63,13 @@ ul {
   border-bottom-right-radius: 5px;
   text-align: left;
   align-items: start;
+  background-color: rgba(59, 70, 87, 0.945);
 }
 
 .dropdown-content {
   position: relative;
   display: none;
-  background-color: rgb(99, 101, 107);
+  background-color: rgba(41, 52, 73, 0.884);
   color: aliceblue;
   max-height: 0px;
   width: 127px;
@@ -69,8 +80,8 @@ ul {
 
 .dropdown-content li {
   display: none;
-  margin-top: 7.5px;
-  color: rgb(208, 210, 213);
+  margin-top: 7px;
+  color: rgb(182, 190, 200);
 }
 
 .dropdown:hover .dropdown-content{
@@ -78,7 +89,7 @@ ul {
   flex-direction: column;
   max-height: 10em;
   padding-bottom: 8px;
-  border-bottom: 3px solid rgb(59, 72, 83);
+  border-bottom: 4px solid rgb(59, 72, 83);
 }
 
 .dropdown:hover .dropdown-content li{
@@ -86,8 +97,11 @@ ul {
 }
 
 .dropdown .dropdown-content li:hover {
-  color: rgb(251, 253, 255);
+  color: rgb(255, 255, 255);
   cursor: pointer;
+}
+#side-navbar {
+  width: 200px;
 }
 #side-navbar ul {
   display: flex;
@@ -96,66 +110,14 @@ ul {
   justify-content: left;
 }
 
-#login-link {
-  position: absolute;
-  left: 1200px;
-  font-weight: 500;
-  background-color: rgb(59, 70, 79);
-  padding: 2.0px;
-  border-radius: 5px;
-  border-bottom-left-radius: 20px;
-}
-
 #company-name-link {
+  position: relative;
   color: rgb(57, 222, 42);
   font-size: x-large;
   font-weight: 400;
   margin-right: 20px;
   margin-left: -25px;
-}
-.search-container {
-  display: flex;
-  align-items: start;
-  top: 0;
-  flex-direction: column;
-  position: relative;
-  margin-left: 75%;
-}
-
-.search-container *::placeholder {
-  color: rgb(106, 107, 108);
-}
-
-.search-field-general {
-  padding-left: 40px;
-  width: 250px;
-  height: 25px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: 0px;
-}
-
-#top-search-field {
-  transition: 0.5s width;
-}
-
-#search-response-list {
-  display: none;
-  background-color: rgb(232, 236, 236);
-  position: absolute;
-  flex-direction: column;
-  padding-right: 50px;
-}
-
-#search-response-list li {
-  display: inline-flex;
-  align-items: baseline;
-}
-
-#search-button{
-  display: flex;
-  position: absolute;
-  justify-content: end;
+  top: 5px;
 }
 
 #footer-container {
@@ -163,7 +125,6 @@ ul {
   background-color: rgb(41, 46, 53);
   color: rgb(189, 199, 199);  
   font-size: small;
-  height: 100%;
 }
 
 #footer-bottom-container {
@@ -186,7 +147,7 @@ ul {
 #footer-links-title {
   margin-bottom: 15px;
   font-size: large;
-  color: rgb(105, 112, 121);
+  color: rgb(79, 86, 100);
 }
 .footer-links {
   margin-bottom: 8px;
@@ -196,6 +157,7 @@ ul {
 .footer-links:hover {
   color: rgb(241, 247, 253);
   cursor: pointer;
+  text-decoration:underline;
 }
 a {
   text-decoration: none;
@@ -233,7 +195,14 @@ a:hover {
 }
 
 .booking-list-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 200px;
+  border-radius: 10px;
+  border: 0;
+  margin-top: 10px;
+  background-color: #586d703c;
 }
 
 .list-item {
@@ -253,7 +222,7 @@ a:hover {
 }
 
 #all-flights-container p{
-  color: rgb(240, 135, 31);
+  color: rgb(216, 74, 8);
 }
 
 #allflights-response-data {
@@ -276,21 +245,32 @@ p {
 
 .main-header {
   text-align: center;
-  color: rgb(47, 70, 70);
+  color: rgb(58, 73, 78);
   padding-top: 10px;
-  padding-bottom: 30px;
+  margin-bottom: 75px;
   font-size: x-large;
+  font-weight: 500;
+}
+
+#flights-header {
+  text-align: left;
+  margin-left: 33px;
 }
 
 .airport-list-general {
+  width: inherit;
   position: absolute;
-  display: flex;
-  background-color: rgb(126, 133, 138);
-  color: aliceblue;
+  display: none;
+  justify-content: center;
+  background-color: rgb(235, 240, 244);
+  color: rgb(64, 66, 68);
   flex-direction: column;
-  text-align: left;
+  text-align: center;
   font-size: medium;
   z-index: 1;
+  overflow:hidden; 
+  overflow-y:scroll;
+  height: 500px;
 }
 
 .airport-list-general li {
@@ -298,36 +278,149 @@ p {
 }
 
 .airport-list-general li:hover {
-  cursor: pointer;color: rgb(52, 67, 96);
+  cursor: pointer;color: rgb(188, 189, 190);
+}
+
+#airport-destination-list {
+  top: 40.5rem;
+}
+
+#airport-departure-list {
+top: 35rem;
 }
 
 .error-response-data {
-  color: red;
+  position: relative;
+  
+  color: rgba(255, 0, 0, 0.927);
   text-align: center;
   font-size: small;
   font-weight: 500;
+}
+
+#login-container {
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: end;
+  padding: 250px;
+}
+
+#login-container img {
+  border-radius: 100px;
+  box-shadow: 0px 15px 50px rgba(56, 12, 215, 0.098);
+}
+
+.page-not-found-container {
+  padding: 25%;
+  color: #888f96;
+}
+
+#dashboard-button {
+  padding: 6px;
+  padding-bottom: 2px;
+  background-color: #3a4553;
+  border-radius: 10px;
+  border: 0;
 }
 
 #login-form {
   border: 1px solid rgba(129, 142, 145, 0.148);
   background-color: rgb(239, 241, 243);
   border-radius: 10px;
+  width: 275px;
+  height: 450px;
+  margin-right: 150px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#login-form * {
+.settings-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.settings-inner-left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 50rem;
+  height: 70rem;
+  left: -32px;
+  background-color: #f7fbff;
+  border-right: 1px solid rgba(223, 228, 232, 0.354);
+}
+
+.settings-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 20rem;
+  height: 50rem;
+  background-color: rgba(61, 69, 82, 0.957);
+  border-radius: 10px;
+}
+
+.settings-form input{
+  position: relative;
+  border-radius: 5px;
+  margin: 7px;
+  top: -15rem;
+  background-color: rgb(80, 90, 106);
+  width: 15rem;
+  height: 1.5rem;
+  color: rgb(206, 213, 220);
+  text-align: center;
+  font-weight: normal;
+  transition: 0.2s background-color;
+}
+
+.settings-form input:hover {
+  background-color: rgb(91, 102, 121);
+  cursor: pointer;
+}
+
+#login-form *{
   display: flex;
   flex-direction: column;
-  border-radius: 2.5px;
+  border-radius: 3px;
   border: 0;
   padding: 5px;
   align-items: center;
   margin: 10px;
 }
 
+#login-options {
+  position: relative;
+  top: -25px;
+}
+
+#login-options p{
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+  margin: 0;
+}
+
+#login-options :last-child{
+  color: rgb(26, 215, 26);
+}
+
+#login-options div *{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 .general-button {
   color: rgb(242, 245, 239);
-  background-color: rgb(57, 222, 42);
+  background-color: rgba(48, 215, 33, 0.929);
   font-weight: 600;
+  border-radius: 7.5px;
+  margin-top: 25px;
+  padding-top: 2px;
 }
 
 .text-input-area {
@@ -345,11 +438,93 @@ p {
 .inner-page-content {
   display: flex;
   flex-direction: column;
-  padding-top: 125px;
-  padding-bottom: 75px;
+  align-items: end;
+  padding-top: 200px;
+  padding-bottom: 200px;
   justify-content: center;
   align-items: center;
 }
+
+#topnav-links-container-right {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  text-align: left;
+  top: 10px;
+  font-size: small;
+  left: 125%;
+}
+
+#login-btn {
+  background-color:#3a4756;
+  border-radius: 10px;
+  padding: 4px;
+  margin-right: 15px;
+  transition: 0.15s background-color;
+}
+
+#login-btn:hover {
+  background-color: #3f4e60;
+}
+
+#signup-btn {
+  padding: 4px;
+}
+
+#booking-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+}
+
+#booking-left-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #f6faffe8;
+  padding: 300px;
+  left: -32px;
+  border-right: 2px solid rgba(221, 229, 227, 0.347);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#booking-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #55718e;
+  margin-left: 7.5rem;
+}
+
+#booking-right-top-content {
+  margin-bottom: 50px;
+  padding-bottom: 50px;
+  border-bottom: 2px solid #3e4b5a22;
+ 
+}
+#booking-right-top-content img {
+  border-radius: 100px;
+  box-shadow: 0px 125px rgba(191, 235, 247, 0.468);
+}
+
+#booking-right-bottom-content img{
+  margin-bottom: 10px;
+}
+
+
+.inner-page-content div:first-child{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
 
 #home-page-inner {
   display: flex;
@@ -376,63 +551,149 @@ label {
   color: rgb(56, 70, 78);
 }
 
+#form-container {
+  margin-top: 50px;
+}
+
 #form *{
   display: flex;
   justify-content: center;
 }
 
-#take-off-text {
-  color: blue;
+#form label:last-child {
+  border-bottom: 2px solid rgb(218, 223, 224);
+  margin-bottom: 10px;
+  padding-bottom: 25px;
 }
-#diagonal-line{
 
-  border-bottom: 3px solid rgb(192, 186, 184);
-  width: 30%;
-  height: 250px;
-  background-color: rgb(221, 223, 225);
-  transform: rotate(-45deg);
-  border-bottom-right-radius: 75px;
-  transform-origin: left;
+#take-off-text {
+  color: rgba(0, 85, 255, 0.571);
+  margin-left: 10px;
+  padding: 5px;
+  font-weight: 650;
+}
+
+  #hamburger-all-content {
+    position: relative;
+    top: 100px;
   }
 
-  @media only screen and (max-width: 800px) {
-    #top-navbar ul {
-      flex-direction: column;
-    }
+  #hamburger-button {
+    display: none;
+    position: relative;
+    left: 10px;
+    top: 2px;
+  }
+  
+  #hamburger-button:hover {
+    cursor: pointer;
+  }
+
+  #hamburger-container {
+    display: none;
+    position: absolute;
+    margin-top: 28px;
+    z-index: 1;
+    height: 60px;
+    width: 80%;
+    border-bottom-right-radius: 15px;
+    background-color: rgb(221, 225, 230);
+  }
+
+  #hamburger-content {
+    display: none;
+    flex-direction: row-reverse;
+    align-items: end;
+}
+
+#hamburger-content li{
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+#search-login-big-screen {
+  display: block;
+}
+
+.login-link-special {
+  background-color: #656973;
+  padding: 2px 10px 4px 10px;
+  border-radius: 7.5px;
+}
+
+#search-response-list {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  
+  margin-top: 25px;
+  background-color: #f0f0f0;
+}
+
+#search-response-list p{
+  color: #1182f3;
+  font-size: smaller;
+  font-weight: 400;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(128, 128, 128);
+  width: 100%;
+  text-align: center;
+}
+  @media only screen and (max-width: 900px) {
 
     .search-container {
       position: relative;
       left: -180px;
-      top: -50px;
-    }
-
-    #top-navbar ul li {
-      position: relative;
-      top: 0px;
-    }
-
-    #top-navbar #company-name-link {
-      position: relative;
-      top: 60px;
+      top: -0px;
+      margin-top: -40px;
     }
 
     #top-navbar {
       position: relative;
     }
 
+    #booking-container {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      padding-left: 0px;
+    }
+
+    #booking-left-content {
+      padding-top: 250px;
+      padding-bottom: 100px;
+      left: 0;
+      border: 0;
+      border-bottom: 2px solid rgba(221, 229, 227, 0.347);
+    }
+
+    #booking-right-container {
+      padding-top: 150px;
+      padding-bottom: 150px;
+      margin-left: 0;
+    }
+
     #side-navbar {
-      left: 0px;
+      position: relative;
       padding-top: 0%;
-      justify-content: left;
+      width: 106%;
+      justify-content: center;
+      top: 90px;
+    }
+
+    #side-navbar ul {
+      flex-direction: row;
+      text-align: center;
+    }
+    
+    #side-navbar .dropdown-content{
+      flex-direction: column;
     }
 
     .page-content {
       flex-direction: column;
-    }
-
-    #login-link {
-      left: 10px;
-      top: 25px;
     }
 
     #all-forms-container {
@@ -454,5 +715,92 @@ label {
       flex-direction: column;
       padding: 5px;
     }
+
+    #hamburger-button {
+      display: block;
+    }
+
+    @keyframes hamburger-slide {
+      from {left: -500px;}
+      to {left: 0px;}
+    }
+
+    #search-login-big-screen *{
+      display: none;
+    }
+
+    /* .line-container img {
+      position: relative;
+      display: inline;
+      top: 60px;
+      left: 15%;
+    } */
+    /* .three {
+      position: absolute;
+      width:110%;
+      height: 100%;
+      background: linear-gradient(to top right, #ffffff calc(50% - 1px), #ffffff, #f5f7fcf3 calc(50% + 5px) )
+    } */
+
+    #login-container {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+
+    #login-form {
+      margin: 0;
+      padding: 0;
+      margin-top: 100px;
+    }
+    #top-navbar {
+      position: fixed;
+      z-index: 2;
+      width: 100%;
+    }
   }
+
+  .search-container {
+    position: relative;
+    display: flex;
+    top: 12px;
+    flex-direction: column;
+    margin-left: 60%;
+  }
+  
+  .search-container *::placeholder {
+    color: rgb(134, 134, 134);
+  }
+
+  #top-search-field {
+    transition: 0.5s width;
+    padding-left: 45px;
+    width: 250px;
+    height: 25px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 5px;
+    border: 0px;
+  }
+  
+  #search-button{
+    display: flex;
+    position: absolute;
+    justify-content: end;
+  }
+  
+  #search-list-content {
+    position: relative;
+    margin-top: 25px;
+    background-color: aliceblue;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .user p {
+    color: rgb(52, 56, 59);
+    font-size: medium;
+  }
+
+
+  
 

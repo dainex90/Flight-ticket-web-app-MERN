@@ -10,7 +10,7 @@ function Footer() {
     const socialLinks = ["Twitter", "WhatsApp", "Slack", "Discord", "Skype", "Teams"];
     return (  
         <footer id="footer-container">
-            <div style={{backgroundColor: 'rgb(35, 40, 47)', padding: '50px', textAlign: 'center'}}>
+            <div style={{backgroundColor: 'rgb(36, 43, 54)', padding: '30px', textAlign: 'center'}}>
                 Copyright @  _ is a trademark of Buzzair. All other trademarks and trade names are the property of their respective owners .
             </div>
             <div id="footer-bottom-container">

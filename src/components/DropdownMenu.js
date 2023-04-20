@@ -1,26 +1,19 @@
-import { useEffect } from 'react';
+
+import { useSelector } from 'react-redux';
 import DropDownArrow from '../imgs/drop-down-arrow.png';
+import { Link } from 'react-router-dom';
 
 function DropdownMenu(props) {
 
+    const { loggedIn } = useSelector(state => state.user);
     var key = 0;
-/*     useEffect(() => {
-            const dropdownContainer = document.getElementById('dropdown-content');
-            props.content.map(link => {
-                const li = document.createElement('li');
-                li.innerHTML = link;
-                dropdownContainer.appendChild(li);
-            })
-    }, [])
-    
- */
     if (props.type === "side-navbar")
     {
         return ( 
             <li className="dropdown"> 
-                <span>{props.title} 
+                <span>{props.title}  
                 <img style={{position: 'relative', top: '8px'}} src={DropDownArrow} width="25px" height='25px'></img>
-                </span>
+                </span> 
                     <ul className="dropdown-content">  
                     {props.content.map(link => {
                         key ++;
@@ -35,9 +28,16 @@ function DropdownMenu(props) {
             {props.title} 
             <img style={{position: 'relative', top: '8px'}} src={DropDownArrow} width="25px" height='25px'></img>
                 <ul className="dropdown-content">  
-                {props.content.map(link => {
-                        key ++;
-                        return <li key={key}> {link} </li>
+                {   
+                    props.content.filter(link => {
+                        if (!loggedIn && link === "Settings") {
+                            console.log(link);
+                            return;
+                        }
+                        return link;
+                    }).map(link => {
+                    key ++;
+                    return <li key={key}> <Link to={`/${link.toLowerCase()}`}>{link}</Link> </li>
                     })} 
                 </ul>
         </li>

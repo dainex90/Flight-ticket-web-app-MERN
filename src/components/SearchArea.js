@@ -4,72 +4,77 @@ import axios from 'axios';
 
 const SearchArea = () => {
 
-    var routeData = [];
+    const [searchTerm, setSearchTerm] = useState('');
 
-    useEffect(() => {
+    const routeDataParsed = [];
+
+    
+    var responseList =  document.getElementById("search-response-list");
+
+    /* useEffect(() => 
+    {
         axios.get('http://localhost:8000/flights')
         .then(res => {
-            routeData = res.data;
-        })
-        .catch(err => document.getElementById('error-reasponse-data').innerHTML = `${err}`);
-    }, []);
+            const routeData = res.data;
+            routeDataParsed = JSON.parse(routeData);
+        }
+        )
+        .catch(err => document.getElementsByClassName('error-response-data')[0].innerHTML = `${err}`)
+    }, []);  */
 
-    const [search, setSearch] = useState("");
+    const travelSearch = (e) => {
+    
+        setSearchTerm(e.target.value);
 
-    const handleClick = (e) => {
-        document.getElementById('top-search-field').style = "width: 375px"
-    }
-
-    const handleMouseLeave = (e) => {
-        document.getElementById('top-search-field').style = "width: 250px";
-    }
-
-    const handleChange = (e) => {
-        setSearch(e.target.value);
-
-        for (let index = 0; index < routeData.length; index++) 
-        {
-            const route = routeData[index];
-            if (route.departure_airport.toLowerCase().includes(search.toLowerCase()))
-            {
-                console.log(route.departure_airport);
-
-                let li = document.createElement('li');
-                li.innerHTML = `<p><strong>From:</strong></p>${route.departure_airport} 
-                <p><strong>To:</strong></p> ${route.destination_airport} 
-                <p><strong>Country:</strong></p> ${route.countries} 
-                <p id="take-off-text" >Take off: </p> ${route.time}`;
-            
-                document.getElementById('search-response-list').appendChild(li);
-            }
-            else {
-                return;
+        if (searchTerm == '') {
+            for (let index = 0; index < responseList.childNodes.length; index++) {
+                const li = responseList[index];
+                responseList.removeChild(li)
             }
         }
+        
+        axios.get('http://localhost:8000/flights')
+        .then(res => {
+            res.data.filter(val => {
+                if (searchTerm == '') {
+                    return;
+                }
+                else if(val.departure_airport.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    return (val);
+                }
+            }).map((val) => {
+                
+                const departureAirport = document.createElement('li');
+                departureAirport.innerHTML = `${val.departure_airport}`;
+                responseList.appendChild(departureAirport);
+                }
+        )}).catch(err => {
+            console.log(err);
+        })
     }
-
-    return ( 
-        <div id='search-outer-container'>
-            <div className="search-container">
-                <input type="search" 
-                        id='top-search-field'
-                        value={search}
-                        className="search-field-general"
-                        placeholder="What are you looking for today?"
-                        onClick={(e) => handleClick(e)}
-                        onMouseLeave={(e) => handleMouseLeave(e)}
-                        onChange={(e) => handleChange(e)}
-                        / >
+        return ( 
+            <div id='search-outer-container'>
+                <div className="search-container">
+                    <input type="search" 
+                            id='top-search-field'
+                            value={searchTerm}
+                            placeholder="What are you looking for today?"
+                            onChange={e => {travelSearch(e)}}
+                            / >
+                    <button id='search-button'>
+                        <img src={SearchIcon} width="20px" height="20px"></img>
+                    </button>
+                </div>
                 <div id='search-response-container'>
                     <ul id='search-response-list'> 
+    
+                        <div className="error-response-data"></div>
                     </ul>
                 </div>
-                <button id='search-button'>
-                    <img src={SearchIcon} width="20px" height="20px"></img>
-                </button>
             </div>
-        </div>
-    );
-}
+        );
+    }
+   
+
 
 export default SearchArea;

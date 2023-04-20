@@ -1,26 +1,47 @@
 import axios from "axios";
 import Button from "./Button";
 import { useState } from "react";
+import downarrow from '../imgs/list-arrow.png';
 
 
 function Form (props) {
 
     // states
-    const [departureAirport, setDepartureAirport] = useState("departure");
-    const [destinationAirport, setDestinationAirport] = useState('destination');
+    
+    const [departureAirport, setDepartureAirport] = useState('');
+    const [destinationAirport, setDestinationAirport] = useState('');
+    const [airportOptionsIsActive, setAirportOptionsIsActive] = useState(false);
 
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     const getData = (e) => {
+        
+        if (airportOptionsIsActive) {
+            setAirportOptionsIsActive(false);
+            document.getElementById("airport-departure-list").style.display = 'none';
+            document.getElementById("airport-destination-list").style.display = 'none';
+            return;
+        }
+        
+        if (e.target.name == "departure") {
+            document.getElementById("airport-departure-list").style.display = 'flex';
+        }
+
+        else {
+            document.getElementById("airport-destination-list").style.display = 'flex';
+        }
+        
+
         axios.get('http://localhost:8000/flights')
         .then(res => {
             generateList(res.data, e);
+            setAirportOptionsIsActive(true);
         }
         )
         .catch(err => {
-            document.getElementsByClassName('error-response-data')[0].innerHTML = err;
+            document.getElementsByClassName('error-response-data')[0].innerHTML = err.message;
         });
     }
     /**
@@ -35,7 +56,24 @@ function Form (props) {
                 // Generate 'From' list 
                 let li = document.createElement('li');
                 li.innerHTML = `${resData[index].departure_airport}`;
-                document.getElementById("airport_departure_list").appendChild(li);
+                
+                if (e.target.name == "departure") {
+                    li.addEventListener('click', () => {
+                        setDepartureAirport(li.innerHTML);
+                        document.getElementById('remove-dep-button').style.display = 'inline';
+                        document.getElementById('dep-arrow').style.display = 'none';
+                    });
+                    document.getElementById("airport-departure-list").appendChild(li);
+                }
+
+                else {
+                    li.addEventListener('click', () => {
+                        setDestinationAirport(li.innerHTML);
+                        document.getElementById('remove-dest-button').style.display = 'inline';
+                        document.getElementById('dest-arrow').style.display = 'none';
+                    });
+                    document.getElementById("airport-destination-list").appendChild(li);
+                }
             }
         //}
     }
@@ -74,27 +112,47 @@ function Form (props) {
         }
     }
 
+    const clearBookingButton = (e) => {
+        if (e.target.id === "remove-dep-button") {
+            setDepartureAirport('');
+            document.getElementById('dep-arrow').style.display = 'block';
+        }
+        else {
+            setDestinationAirport('');
+            document.getElementById('dest-arrow').style.display = 'block';
+        }
+        document.getElementById(e.target.id).style.display = 'none';
+        
+    }
+
     return (  
         <>
             <div id="form-container">
                 <form id="form" onSubmit={(e) => handleSubmit(e)}>
                     <label> <strong>{operationType()}</strong>
-                            <label style={{color: 'orange'}}> <strong>From</strong>
-                                <button value={departureAirport} onClick={(e) => getData(e)} className="booking-list-btn">{departureAirport}
+                            <label style={{color: 'orange'}}> <strong>Departure</strong>
+                                <button value={departureAirport} name="departure" onClick={(e) => getData(e)} className="booking-list-btn text-input-area">{departureAirport}
+                                <img id="dep-arrow" src={downarrow} width='15px' height='20px'></img>
                                     <ul id="airport-departure-list" className="airport-list-general">
-
+                                    
                                     </ul>
+                                    <button id="remove-dep-button" style={{color: 'red', fontWeight: "1000", display: 'none', background: '0', border: '0'}} onClick={e => clearBookingButton(e)}>X</button>
                                 </button>
+                                
                             </label>
                             <label style={{color: 'orange'}}> <strong>To</strong>
-                                <button value={destinationAirport} onClick={(e) => getData(e)} className="booking-list-btn">{destinationAirport}
+                                <button value={destinationAirport} name="destination" onClick={(e) => getData(e)} className="booking-list-btn text-input-area">{destinationAirport}
+                                <img id="dest-arrow" src={downarrow} width='15px' height='20px'></img>
                                     <ul id="airport-destination-list" className="airport-list-general">
                                     
                                     </ul>
+                                    <button id="remove-dest-button" style={{color: 'red', fontWeight: "1000", display: 'none', background: '0', border: '0'}} onClick={e => clearBookingButton(e)}>X</button>
                                 </button>
+                                
                             </label>
-                            <Button />
                     </label>
+                    <Button />
+                    
                     <div id="post-response"></div>
                     <div className="error-response-data"></div>
                 </form>

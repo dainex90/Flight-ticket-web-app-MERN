@@ -23,15 +23,23 @@ app.get('/flights', (req, res) => {
 });
 
 // Login Request
-app.post('/login/:email-:password', (req, res) => {
-    registered_users.filter(user => {
-        if (req.params.email == user.email && req.params.password == user.password)
-        {
-            res.status(200).send("User was logged in!");
-        }
-    })
-    res.status(400).send("Could not login, Try again");
-})
+app.get('/login/:email-:password', (req, res) => {
+    try {
+        const { email, password } = req.params;
+        registered_users.filter(user => {
+            if (email === user.email && password === user.password)
+            {
+                res.status(200).json({
+                    email: user.email,
+                    password: user.password
+                })
+            }
+        })
+    } catch (error) {
+        res.status(404).send("Invaid Username or password, try again!");
+    }    
+}
+);
 
 // buy Ticket Request
 app.get('/flights/:buy', (req, res) => {
